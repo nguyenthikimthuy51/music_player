@@ -1,5 +1,5 @@
 .player-music {
-  background-color: #0F172A !important;
+  background-color: #422145 !important;
   height: 6rem;
 }
 .rhap_time, .rhap_current-time {
@@ -7,7 +7,7 @@
 }
 
 button:hover {
-color: rgb(0, 225, 255);
+color: #31e343;
 
 }
 
@@ -36,8 +36,19 @@ color: rgb(0, 225, 255);
 }
 
 .h-16, .bg-green-900 text-white text-left{
-background-color: rgb(34, 104, 78);
+/* background-color: #4b436c; */
+background: linear-gradient(275.19deg, rgba(119, 5, 194, 0.42) 0%, #3e1150 100%);
 }
 .grid, .grid-cols-3, .bg-slate-700 h-screen-navbar-player overflow-hidden{
-background-color: rgb(76, 133, 120);
+
+background: linear-gradient(to right top, #4b436c, #877abd, #a093d1, #cbc1ee);
 }
+
+.listsong {
+  background-color: rgba(90, 35, 87, 0) 111.8%;
+  background: linear-gradient(to right, #77489b 0.24%, rgba(90, 35, 87, 0) 111.8%);
+}
+/* 
+.fa fa-download:hover{
+  color: #31e343;
+} */
