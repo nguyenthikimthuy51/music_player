@@ -1,18 +1,38 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Songs } from "../Context";
+import { get, ref, child, onValue } from "firebase/database";
+import { database } from "../firebase";
 
 export default function ListSongs() {
-  const { DataSongs, handleSetSong, song } = useContext(Songs);
+  const { handleSetSong, song } = useContext(Songs);
   const [idSong, setidSong] = useState(0);
-  const handlePlaySong = (idSong) => {
-    setidSong(idSong)
-    handleSetSong(idSong)
-  };
+  const [DataSongs, setDataSongs] = useState([]);
+
   useEffect(() => {
-    setidSong(song.id)
-  }, [song])
+    const songsRef = ref(database);
+    onValue(songsRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(songsRef);
+      if (data) {
+        const songs = Object.values(data);
+        setDataSongs(songs);
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (song) {
+      setidSong(song.id);
+    }
+  }, [song]);
+
+  const handlePlaySong = (idSong) => {
+    setidSong(idSong);
+    handleSetSong(idSong);
+  };
+
   return (
-    <div className="col-span-2  overflow-y-scroll">
+    <div className="col-span-2 overflow-y-scroll">
       <table className="table-auto w-full">
         <thead className="text-white h-12">
           <tr>
@@ -26,7 +46,9 @@ export default function ListSongs() {
           {DataSongs.map((song, index) => (
             <tr
               key={index}
-              className={`h-12 text-gray-100 hover:bg-purple-500 ${idSong === song.id && 'bg-purple-600 text-green-400'}`}
+              className={`h-12 text-gray-100 hover:bg-purple-500 ${
+                idSong === song.id ? "bg-purple-600 text-green-400" : ""
+              }`}
               onClick={() => handlePlaySong(song.id)}
             >
               <td className="text-center">{index + 1}</td>
