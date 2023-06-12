@@ -5,7 +5,7 @@ export default function DetailSong() {
   const { song } = useContext(Songs);
 
   if (!song) {
-    return <div>Loading...</div>;
+    return <div className="text-gray-50 text-4xl text-center py-52 place-items-stretch "><i class="fa fa-spinner pr-5 " aria-hidden="true"></i>Loading...</div>;
   }
 
   return (
